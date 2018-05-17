@@ -1,17 +1,7 @@
-export interface IDynaClassNameConfig {
-    emptyClassNameOutput: string;
-}
-export interface IConditionalClassName {
-    [subClassName: string]: boolean;
-}
-export declare type INameArg = (string | IConditionalClassName | Array<string | IConditionalClassName>);
+export declare const dynaClassName: (className: string) => DynaClassName;
 export declare class DynaClassName {
-    private baseClassName;
-    private readonly config;
-    constructor(baseClassName?: string, config?: IDynaClassNameConfig);
-    base: string;
-    name(...args: INameArg[]): string;
-    private applyByNameByString(subClassName?);
-    private applyByConditionalClassName(ccn);
+    private readonly className;
+    constructor(className: string);
+    and(className: string, active?: boolean): DynaClassName;
+    readonly name: string;
 }
-export declare const getDynaClassName: (baseClassName: string) => DynaClassName;

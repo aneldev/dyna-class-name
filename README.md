@@ -1,4 +1,9 @@
-# readme
+# About
 
-[.my-base__main-window .my-base__main-window--open.my-base__main-window--active.my-base__main-window--selected] but received 
-[.my-base__main-window.my-base--active.my-base--selected]
+Write the class names in JS code like your wrote them in Less or Sass.
+
+With `dynaClassName` you can declare the css class names with the same way as you have write them in the Less or Sass file. 
+
+This make the class generation in js the same as in css file and the code looks almost the same.
+
+So... it is maintenable!

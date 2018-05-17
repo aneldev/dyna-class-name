@@ -1,4 +1,9 @@
 export {
-	DynaClassName, IDynaClassNameConfig,
+	DynaClassNameOLD, IDynaClassNameConfig,
 	getDynaClassName,
-}from "./DynaClassName";
+}from "./DynaClassNameOLD";
+
+export {
+	dynaClassName,
+	DynaClassName,
+} from "./DynaClassName";
