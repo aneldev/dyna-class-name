@@ -2,11 +2,23 @@
 
 Write the class names in JS code like your wrote them in Less or Sass.
 
-With `dynaClassName` you can declare the css class names with the same way as you have write them in the Less or Sass file. 
+With `dynaClassName` you can declare the css class names with the same way as you have wrote them in the `.less` or `.sass` file. 
 
-This make the class generation in js the same as in css file and the code looks almost the same.
+So 
+- the code is cleane
+- you can easy rename the selector
+- you don't duplicate the selectors in the js file
+- you introduce "type save" for the class names
 
-So... it is maintainable!
+# What's the difference wi the class names
+
+[classnames](https://github.com/JedWatson/classnames) are nice, almost everyone has made some methods like this before this, it's a nice _standardization_ but it doesn't approaches the hierachy nature of the css structure.
+
+So the difference is that
+ - the `classnames` creates a class name according an array of class names while 
+ - the `dyna-class-name` is creating the class name through reusable chain calls using the same syntax as applied in the `.less` or `.sass` file.
+ 
+There is no need to "develop" the class names with concatenations, simply use them as are written in less file.
 
 # Usage
 

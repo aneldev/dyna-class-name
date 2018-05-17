@@ -8,6 +8,8 @@ if (typeof jasmine !== 'undefined') jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
 
 describe('dyna class, css class representation', () => {
 	/*
+
+	// source less
 	.my-component {
 		&__input-field {
 			background-color: white-smoke;
@@ -21,6 +23,7 @@ describe('dyna class, css class representation', () => {
 		}
 	}
 
+	// generated css
 	.my-component__input-field {
 		background-color: white-smoke;
 	}
@@ -33,7 +36,6 @@ describe('dyna class, css class representation', () => {
 	let componentClassName: DynaClassName;
 	let inputClassName: DynaClassName;
 	let inputValidationClassName: DynaClassName;
-
 
 	it('component class name', () => {
 		componentClassName = dynaClassName(".my-component");
@@ -64,6 +66,5 @@ describe('dyna class, css class representation', () => {
 				.name
 		)
 			.toBe('.my-component__input-field--validate-error input');
-		debugger;
 	});
 });
