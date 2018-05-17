@@ -36,7 +36,7 @@ describe('dyna class, css class representation', () => {
 
 
 	it('component class name', () => {
-		componentClassName = dynaClassName(".my-component");;
+		componentClassName = dynaClassName(".my-component");
 		expect(componentClassName.name)
 			.toBe('.my-component');
 	});
@@ -64,5 +64,6 @@ describe('dyna class, css class representation', () => {
 				.name
 		)
 			.toBe('.my-component__input-field--validate-error input');
+		debugger;
 	});
 });
