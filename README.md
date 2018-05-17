@@ -1,39 +1,52 @@
 # About
 
-Write the class names in JS code like your wrote them in Less or Sass.
+In js code, create the class names as you write them in the `.less` or `.sass` file. Later, the generation of the css is a piece of cake since you have already generetated the selectors.
 
-With `dynaClassName` you can declare the css class names with the same way as you have wrote them in the `.less` or `.sass` file. 
+With this, you can rename/refactor the class names easily since both js and css are using the same class names and structure.
 
-So 
-- the code is cleane
+Benefits 
+- the code is clean
 - you can easy rename the selector
 - you don't duplicate the selectors in the js file
-- you introduce "type save" for the class names
+- you introduce "type safe" notation for the class names
 
 # What's the difference wi the class names
 
-[classnames](https://github.com/JedWatson/classnames) are nice, almost everyone has made some methods like this before this, it's a nice _standardization_ but it doesn't approaches the hierachy nature of the css structure.
+[classnames](https://github.com/JedWatson/classnames) is nice but it doesn't approaches the hierarchy nature of the css structure.
 
 So the difference is that
- - the `classnames` creates a class name according an array of class names while 
- - the `dyna-class-name` is creating the class name through reusable chain calls using the same syntax as applied in the `.less` or `.sass` file.
+ - the `classnames` creates a class name according an array of class names _while_ 
+ - the `dyna-class-name` create the class name through reusable chain calls using the same syntax as applied in the `.less` or `.sass` file.
  
 There is no need to "develop" the class names with concatenations, simply use them as are written in less file.
 
 # Usage
 
 ```
-    dynaClassName(".my-component");                         // returns .my-component
-    dynaClassName(".my-component").add("&__info");          // returns .my-component__info
-    dynaClassName(".my-component").add("input");            // returns .my-component input
-    dynaClassName(".my-component").add(".label");           // returns .my-component .label
-    dynaClassName(".my-component").add("&--active", false); // returns .my-component
+    dynaClassName(".my-component").name                          // returns .my-component
+    dynaClassName(".my-component").and("&__info").name           // returns .my-component__info
+    dynaClassName(".my-component").and("input").name             // returns .my-component input
+    dynaClassName(".my-component").and(".label").name            // returns .my-component .label
+    dynaClassName(".my-component").and("&--active", false).name  // returns .my-component
 ```
+
+# Usage in react
+
+// todo
 
 # Example
 
-Imagine we wave this _bemsih_ css style component.
+Imagine we wave this _bemsih css style_ component.
 
+React example
+```
+render() {
+    const className = dynaClassName(".my-component")
+    return <div class={className}></div>
+}
+```
+
+Less
 ```
 	.my-component {
 		&__input-field {

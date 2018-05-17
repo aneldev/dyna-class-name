@@ -6,7 +6,7 @@ if (typeof jasmine !== 'undefined') jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
 
 // help: https://facebook.github.io/jest/docs/expect.html
 
-describe('dyna class, css class representation', () => {
+describe('dyna class, css class representation with add', () => {
 	/*
 
 	// source less
@@ -66,5 +66,42 @@ describe('dyna class, css class representation', () => {
 				.name
 		)
 			.toBe('.my-component__input-field--validate-error input');
+	});
+});
+
+describe('dyna class, css class representation with include', () => {
+	/*
+
+	// source less
+	.my-component {
+		&__input-field {
+			background-color: white-smoke;
+			&--validate-{
+				&error {
+					input {
+						background-color: red;
+					}
+				}
+			}
+		}
+	}
+
+	// generated css
+	.my-component__input-field {
+		background-color: white-smoke;
+	}
+	.my-component__input-field--validate-error input{
+		background-color: red;
+	}
+
+	 */
+
+	it('component class name', () => {
+		expect(
+			dynaClassName(".my-component")
+				.includes("&__input-field")
+				.name
+		)
+			.toBe('.my-component .my-component__input-field');
 	});
 });
