@@ -6,102 +6,56 @@ if (typeof jasmine !== 'undefined') jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
 
 // help: https://facebook.github.io/jest/docs/expect.html
 
-describe('dyna class, css class representation with add', () => {
-	/*
+describe('dyna class name, ', () => {
+	let className: DynaClassName;
 
-	// source less
-	.my-component {
-		&__input-field {
-			background-color: white-smoke;
-			&--validate-{
-				&error {
-					input {
-						background-color: red;
-					}
-				}
-			}
-		}
-	}
+	it('crete component dyna class name', () => {
+		className = dynaClassName("my-component");
+		expect(className()).toBe('');
+		expect(className(null)).toBe('');
+	});
 
-	// generated css
-	.my-component__input-field {
-		background-color: white-smoke;
-	}
-	.my-component__input-field--validate-error input{
-		background-color: red;
-	}
+	it('should export base class name', () => {
+		expect(className("")).toBe("my-component");
+	});
 
-	 */
+	it('should export simple class name', () => {
+		expect(className("__header")).toBe("my-component__header");
+	});
 
-	let componentClassName: DynaClassName;
-	let inputClassName: DynaClassName;
-	let inputValidationClassName: DynaClassName;
+	it('should export simple class name with the base by string', () => {
+		expect(className(" __header")).toBe("my-component my-component__header");
+	});
 
-	it('component class name', () => {
-		componentClassName = dynaClassName(".my-component");
-		expect(componentClassName.name)
-			.toBe('.my-component');
+	it('should export simple class name with the base by args', () => {
+		expect(className("", "__header")).toBe("my-component my-component__header");
 	});
-	it('import control class name', () => {
-		inputClassName = componentClassName.and("&__input-field");
-		expect(inputClassName.name)
-			.toBe('.my-component__input-field');
+
+	it('should export concat class names by string', () => {
+		expect(className("__header --style-dark")).toBe("my-component__header my-component--style-dark");
 	});
-	it('input control validation class name', () => {
-		inputValidationClassName = inputClassName.and('&--validate-').and('&error');
-		expect(inputValidationClassName.name)
-			.toBe('.my-component__input-field--validate-error');
+
+	it('should export concat class names by string', () => {
+		expect(className("__header --style-dark")).toBe("my-component__header my-component--style-dark");
 	});
-	it('input control validation class name, with nested element', () => {
-		expect(inputValidationClassName.and('input').name)
-			.toBe('.my-component__input-field--validate-error input');
+
+	it('should export concat class names by args', () => {
+		expect(className("__header", "--style-dark")).toBe("my-component__header my-component--style-dark");
 	});
-	it('input control validation class name, with nested element, all together', () => {
-		expect(
-			dynaClassName(".my-component")
-				.and('&__input-field')
-				.and('&--validate-')
-				.and('&error')
-				.and('input')
-				.name
-		)
-			.toBe('.my-component__input-field--validate-error input');
+
+	it('should export concat class names by args ignoring nulls and undefined', () => {
+		expect(className("__header", null, undefined, "--style-dark")).toBe("my-component__header my-component--style-dark");
 	});
+
+	it('should export concat class names with conditional args', () => {
+		expect(className("__header", 1 == 1 && "--style-dark")).toBe("my-component__header my-component--style-dark");
+	});
+
+	it('should export concat class names with conditional args', () => {
+		expect(className("__header", 1 == 1 + 2 && "--style-dark")).toBe("my-component__header");
+		debugger;
+	});
+
+
 });
 
-describe('dyna class, css class representation with include', () => {
-	/*
-
-	// source less
-	.my-component {
-		&__input-field {
-			background-color: white-smoke;
-			&--validate-{
-				&error {
-					input {
-						background-color: red;
-					}
-				}
-			}
-		}
-	}
-
-	// generated css
-	.my-component__input-field {
-		background-color: white-smoke;
-	}
-	.my-component__input-field--validate-error input{
-		background-color: red;
-	}
-
-	 */
-
-	it('component class name', () => {
-		expect(
-			dynaClassName(".my-component")
-				.includes("&__input-field")
-				.name
-		)
-			.toBe('.my-component .my-component__input-field');
-	});
-});
