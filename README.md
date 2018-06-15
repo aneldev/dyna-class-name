@@ -12,9 +12,15 @@ Semver comply.
 - you don't duplicate the selectors in the js file
 - you introduce "type safe" notation for the class names
 
-# As a glance
+# Install
+
+`npm install dyna-class-name`
+
+# Play
 
 ```
+    import {dynaClassName} from "dyna-class-name";
+    
     // create the root class name function
     
     const className = dynaClassName("my-component");
