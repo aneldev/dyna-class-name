@@ -53,7 +53,10 @@ describe('dyna class name, ', () => {
 
 	it('should export concat class names with conditional args', () => {
 		expect(className("__header", 1 == 1 + 2 && "--style-dark")).toBe("my-component__header");
-		debugger;
+	});
+
+	it('should export concat class names with conditional objects', () => {
+		expect(className({"--hidden": true, "--focused": false})).toBe("my-component--hidden");
 	});
 
 

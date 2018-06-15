@@ -43,6 +43,12 @@ Semver comply.
 
     className("__header");
     // returns "my-component__header"
+    
+    className({"--hidden": true, "--focused": false});
+    // returns "my-component--hidden"
+
+    className("", {"--hidden": true, "--focused": false});
+    // returns "my-component my-component--hidden"
 
     className("__header --style-dark");
     className("__header", "--style-dark");
@@ -68,7 +74,6 @@ Semver comply.
     //      else "my-component__label" 
 
 ```
-
 
 # Example with code
 
