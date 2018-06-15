@@ -1,6 +1,6 @@
 {
   "name": "dyna-class-name",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Easy class name builder",
   "repository": {
     "type": "git",
@@ -47,7 +47,11 @@
     "update-release": "npm update && git add -u && git add -A && git commit -m \"last minute update-release changes\"; npm run release",
     "reinstall": "rm ./package-lock.json; rm -rf ./node_modules; npm install"
   },
-  "keywords": ["classname", "classnames", "css"],
+  "keywords": [
+    "classname",
+    "classnames",
+    "css"
+  ],
   "author": "Anel dev",
   "license": "MIT",
   "dependencies": {},
