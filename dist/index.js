@@ -101,11 +101,16 @@ exports.dynaClassName = function (baseClassName) {
             classNames[_i] = arguments[_i];
         }
         return classNames
-            .reduce(function (acc, v) {
-            if (typeof v === "string")
-                acc = acc.concat(v.split(" "));
+            .reduce(function (acc, value) {
+            if (typeof value === "string")
+                acc = acc.concat(value.split(" "));
+            else if (typeof value === "object" && value != null)
+                Object.keys(value).forEach(function (className) {
+                    if (value[className])
+                        acc.push(className);
+                });
             else
-                acc.push(v);
+                acc.push(value);
             return acc;
         }, [])
             .filter(function (cn) { return cn != null && cn !== true && cn !== false; })
