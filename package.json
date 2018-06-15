@@ -6,7 +6,7 @@
     "type": "git",
     "url": "http://github.com/aneldev/dyna-class-name"
   },
-  "private": true,
+  "private": false,
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
