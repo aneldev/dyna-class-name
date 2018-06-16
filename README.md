@@ -27,10 +27,10 @@ Semver comply.
     // returns a function to create class names based in the given class name
     // now use this function to generated class names based no "my-component"
     
-    className();
     className(null);
     // returns ""
     
+    className();
     className("");
     // returns "my-component"
     
@@ -141,3 +141,18 @@ So the difference is
  
 The `dyna-class-name`  makes the definition of the class names in javascript to in similar way in less/sass scripts.
  
+# Change log
+
+#v1 
+
+1st version.
+
+#v2 
+
+The call without args returns the base class name while in v1 an empty string was returned.
+
+```
+    const className = dynaClassName("my-component");
+    className();
+    // returns "my-component"
+```

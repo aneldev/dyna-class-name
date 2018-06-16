@@ -1,8 +1,9 @@
 export type DynaClassName = (...classNames: (string | any)[]) => string;
 
 export const dynaClassName = (baseClassName: string): DynaClassName => {
-	return (...classNames: (string | any)[]): string =>
-		classNames
+	return (...classNames: (string | any)[]): string => {
+		if (classNames.length === 0) return baseClassName;
+		return classNames
 			.reduce((acc: any[], value: any) => {
 				if (typeof value === "string")
 					acc = acc.concat(value.split(" "));
@@ -17,4 +18,5 @@ export const dynaClassName = (baseClassName: string): DynaClassName => {
 			.filter((cn: any) => cn != null && cn !== true && cn !== false)
 			.map((subClassName: string) => `${baseClassName}${subClassName}`)
 			.join(" ");
+	}
 };

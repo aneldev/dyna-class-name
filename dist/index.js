@@ -100,6 +100,8 @@ exports.dynaClassName = function (baseClassName) {
         for (var _i = 0; _i < arguments.length; _i++) {
             classNames[_i] = arguments[_i];
         }
+        if (classNames.length === 0)
+            return baseClassName;
         return classNames
             .reduce(function (acc, value) {
             if (typeof value === "string")

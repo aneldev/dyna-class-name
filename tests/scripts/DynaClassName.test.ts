@@ -11,7 +11,14 @@ describe('dyna class name, ', () => {
 
 	it('crete component dyna class name', () => {
 		className = dynaClassName("my-component");
-		expect(className()).toBe('');
+		expect(className).not.toBe(undefined);
+	});
+
+	it('should return base class name on no args', () => {
+		expect(className()).toBe('my-component');
+	});
+
+	it('should return empty string on null values', () => {
 		expect(className(null)).toBe('');
 	});
 
