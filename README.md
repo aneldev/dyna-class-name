@@ -58,6 +58,10 @@ Semver comply.
     className("__header", false, "--style-dark");
     // returns "my-component__header my-component--style-dark"
     
+    // when a class name starts with "/", the base class name is omitted
+    className("/user-class-name", "", "__header");
+    // returns "user-class-name my-component my-component__header"
+
     // create the nested className function, based on base class name
 
     const headerClassName = dynaClassName(className("__header"));

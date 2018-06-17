@@ -16,7 +16,10 @@ export const dynaClassName = (baseClassName: string): DynaClassName => {
 				return acc;
 			}, [])
 			.filter((cn: any) => cn != null && cn !== true && cn !== false)
-			.map((subClassName: string) => `${baseClassName}${subClassName}`)
+			.map((subClassName: string) => {
+				if (subClassName[0] === '/') return subClassName.substr(1);
+				return `${baseClassName}${subClassName}`;
+			})
 			.join(" ");
 	}
 };

@@ -22,50 +22,62 @@ describe('dyna class name, ', () => {
 		expect(className(null)).toBe('');
 	});
 
-	it('should export base class name', () => {
+	it('should return base class name', () => {
 		expect(className("")).toBe("my-component");
 	});
 
-	it('should export simple class name', () => {
+	it('should return simple class name', () => {
 		expect(className("__header")).toBe("my-component__header");
 	});
 
-	it('should export simple class name with the base by string', () => {
+	it('should return simple class name with the base by string', () => {
 		expect(className(" __header")).toBe("my-component my-component__header");
 	});
 
-	it('should export simple class name with the base by args', () => {
+	it('should return simple class name with the base by args', () => {
 		expect(className("", "__header")).toBe("my-component my-component__header");
 	});
 
-	it('should export concat class names by string', () => {
+	it('should return concat class names by string', () => {
 		expect(className("__header --style-dark")).toBe("my-component__header my-component--style-dark");
 	});
 
-	it('should export concat class names by string', () => {
+	it('should return concat class names by string', () => {
 		expect(className("__header --style-dark")).toBe("my-component__header my-component--style-dark");
 	});
 
-	it('should export concat class names by args', () => {
+	it('should return concat class names by args', () => {
 		expect(className("__header", "--style-dark")).toBe("my-component__header my-component--style-dark");
 	});
 
-	it('should export concat class names by args ignoring nulls and undefined', () => {
+	it('should return concat class names by args ignoring nulls and undefined', () => {
 		expect(className("__header", null, undefined, "--style-dark")).toBe("my-component__header my-component--style-dark");
 	});
 
-	it('should export concat class names with conditional args', () => {
+	it('should return concat class names with conditional args', () => {
 		expect(className("__header", 1 == 1 && "--style-dark")).toBe("my-component__header my-component--style-dark");
 	});
 
-	it('should export concat class names with conditional args', () => {
+	it('should return concat class names with conditional args', () => {
 		expect(className("__header", 1 == 1 + 2 && "--style-dark")).toBe("my-component__header");
 	});
 
-	it('should export concat class names with conditional objects', () => {
+	it('should return concat class names with conditional objects', () => {
 		expect(className({"--hidden": true, "--focused": false})).toBe("my-component--hidden");
 	});
 
+	it('should return class name without base name when the start with "/"', () => {
+		expect(className("/user-class-name", "", "--active")).toBe("user-class-name my-component my-component--active");
+	});
 
+	it('should return class name without base name when the start with "/", conditional version - true', () => {
+		const userClassName: string = "user-class-name";
+		expect(className(userClassName && "/" + userClassName, "", "--active")).toBe("user-class-name my-component my-component--active");
+	});
+
+	it('should return class name without base name when the start with "/", conditional version - false', () => {
+		const userClassName: string = undefined;
+		expect(className(userClassName && "/" + userClassName, "", "--active")).toBe("my-component my-component--active");
+	});
 });
 
