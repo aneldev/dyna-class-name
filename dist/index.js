@@ -116,7 +116,11 @@ exports.dynaClassName = function (baseClassName) {
             return acc;
         }, [])
             .filter(function (cn) { return cn != null && cn !== true && cn !== false; })
-            .map(function (subClassName) { return "" + baseClassName + subClassName; })
+            .map(function (subClassName) {
+            if (subClassName[0] === '/')
+                return subClassName.substr(1);
+            return "" + baseClassName + subClassName;
+        })
             .join(" ");
     };
 };
