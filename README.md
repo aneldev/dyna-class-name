@@ -69,13 +69,13 @@ Semver comply.
     // and this returns a function to create class names based on "my-component__header" class name
 
     headerClassName("__label");
-    // returns "my-component__header__label" (no so bem, anyway)
+    // returns "my-component__header__label" (no so bem, this nested bem :) )
 
     headerClassName("__label", componentIsFocused ? "--highlighted" : null);
     headerClassName("__label", componentIsFocused && "--highlighted");
     // if the componentIsFocused is true 
-    //      then it will return "my-component__label--highlighted" 
-    //      else "my-component__label" 
+    //      then it will return "my-component__header__label my-component__header--highlighted" 
+    //      else "my-component__header__label" 
 
 ```
 
