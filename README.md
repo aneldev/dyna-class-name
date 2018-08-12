@@ -16,7 +16,9 @@ Semver comply.
 
 `npm install dyna-class-name`
 
-# Play
+# Usage
+
+## Meet the dyna class name
 
 ```
     import {dynaClassName} from "dyna-class-name";
@@ -69,7 +71,7 @@ Semver comply.
     // and this returns a function to create class names based on "my-component__header" class name
 
     headerClassName("__label");
-    // returns "my-component__header__label" (no so bem, this nested bem :) )
+    // returns "my-component__header__label" (no so bem, this is nested bem :) )
 
     headerClassName("__label", componentIsFocused ? "--highlighted" : null);
     headerClassName("__label", componentIsFocused && "--highlighted");
@@ -79,9 +81,9 @@ Semver comply.
 
 ```
 
-# Example with code
+## Simple use in react
 
-## The Code
+### The Code
 
 It works in JavaScript of course... anyway this example is in TypeScript.
 
@@ -109,11 +111,9 @@ It works in JavaScript of course... anyway this example is in TypeScript.
             );
         }
     }
-    
-
 ```
 
-## the Less/Sass script
+### the Less/Sass script
 
 ```
 .my-component {
@@ -130,10 +130,44 @@ It works in JavaScript of course... anyway this example is in TypeScript.
 }
 ```
 
-## Notice!
+**Notice** in this example, that the class names in the less script, ar declared with the same way as in the Script code. 
 
-Notice in this example, that the class names in the less script, ar declared with the same way as in the Script code. 
+## Method root(props)
 
+If your component supports the prop `className`, the `root` method uses this prop out of the box.
+
+The `className.root(this.props)` method is shorthand of `dynaClassName(this.props.className && "/" + this.props.className, "")`.
+
+You can use safely this method even if your component doesn't support this prop.
+
+Example:
+
+```
+
+class MyComponent extends React.Component {
+    className = dynaClassName("my-component");
+    
+    ...
+    
+    render () {
+        return (
+            <div className={this.className.root(this.props)}>
+                my awesome component
+            </div>
+        );
+    }
+}
+
+```
+
+When you use this component like this: 
+
+```
+    <MyComponent className="super-component" />
+```
+
+The applied class name will be: `super-component my-component` 
+  
 
 # What's the difference with the famous classnames
 
@@ -143,7 +177,7 @@ So the difference is
  - the `classnames` creates a class name(s) according an array of class names _while_ 
  - the `dyna-class-name` creates the class name(s) based on a class name with cleaner syntax
  
-The `dyna-class-name`  makes the definition of the class names in javascript to in similar way in less/sass scripts.
+The `dyna-class-name` makes the definition of the class names in javascript to be in similar way in less/sass scripts.
  
 # Change log
 

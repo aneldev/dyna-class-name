@@ -1,7 +1,14 @@
-export type DynaClassName = (...classNames: (string | any)[]) => string;
+export type DynaClassName = {
+	(...classNames: (string | any)[]): string;
+	root(props: IProps): string;
+};
+
+export interface IProps {
+	className?: string;
+}
 
 export const dynaClassName = (baseClassName: string): DynaClassName => {
-	return (...classNames: (string | any)[]): string => {
+	const output: any = (...classNames: (string | any)[]): string => {
 		if (classNames.length === 0) return baseClassName;
 		return classNames
 			.reduce((acc: any[], value: any) => {
@@ -21,5 +28,11 @@ export const dynaClassName = (baseClassName: string): DynaClassName => {
 				return `${baseClassName}${subClassName}`;
 			})
 			.join(" ");
-	}
+	};
+
+	output.root = (props: IProps): string => {
+		return output(props.className && "/" + props.className, "");
+	};
+
+	return output;
 };

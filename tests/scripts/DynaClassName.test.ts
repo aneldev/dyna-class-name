@@ -79,5 +79,25 @@ describe('dyna class name, ', () => {
 		const userClassName: string = undefined;
 		expect(className(userClassName && "/" + userClassName, "", "--active")).toBe("my-component my-component--active");
 	});
+
+	it('should return the base class name, using the root(props) without className property', () => {
+		const myComponent: any = {
+			props: {},
+		};
+		const className: DynaClassName = dynaClassName("my-component");
+		const output = className.root(myComponent.props);
+		expect(output).toBe("my-component")
+	});
+
+	it('should return the className and the base class name, using the root(props) with className property', () => {
+		const myComponent: any = {
+			props: {
+				className: "user-class-name",
+			},
+		};
+		const className: DynaClassName = dynaClassName("my-component");
+		const output = className.root(myComponent.props);
+		expect(output).toBe("user-class-name my-component")
+	});
 });
 

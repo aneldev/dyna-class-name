@@ -95,7 +95,7 @@ exports.dynaClassName = DynaClassName_1.dynaClassName;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dynaClassName = function (baseClassName) {
-    return function () {
+    var output = function () {
         var classNames = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             classNames[_i] = arguments[_i];
@@ -123,6 +123,10 @@ exports.dynaClassName = function (baseClassName) {
         })
             .join(" ");
     };
+    output.root = function (props) {
+        return output(props.className && "/" + props.className, "");
+    };
+    return output;
 };
 
 
