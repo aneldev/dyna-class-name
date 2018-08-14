@@ -1,7 +1,9 @@
 export type DynaClassName = {
-	(...classNames: (string | any)[]): string;
-	root(props: IProps,  ...classNames: string[]): string;
+	(...classNames:TClassNameArguments ): string;
+	root(props: IProps, ...classNames: TClassNameArguments): string;
 };
+
+export type TClassNameArguments = (string | string[] | {[className:string]: boolean})[];
 
 export interface IProps {
 	className?: string;
@@ -14,6 +16,8 @@ export const dynaClassName = (baseClassName: string): DynaClassName => {
 			.reduce((acc: any[], value: any) => {
 				if (typeof value === "string")
 					acc = acc.concat(value.split(" "));
+				else if (Array.isArray(value))
+					acc = acc.concat(value);
 				else if (typeof value === "object" && value != null)
 					Object.keys(value).forEach((className: string) => {
 						if (value[className]) acc.push(className);
@@ -30,7 +34,7 @@ export const dynaClassName = (baseClassName: string): DynaClassName => {
 			.join(" ");
 	};
 
-	output.root = (props: IProps, ...classNames: string[]): string => {
+	output.root = (props: IProps, ...classNames: TClassNameArguments): string => {
 		return output(
 			props.className && props.className
 				.split(" ")

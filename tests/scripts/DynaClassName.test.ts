@@ -116,13 +116,25 @@ describe('dyna class name, ', () => {
 		expect(output).toBe("user-class-name-1 user-class-name-2 my-component")
 	});
 
-	it('should return the className and the base class name, using the root(props) with className property with more that one names and additional based class names', () => {
+	it('should return the className and the base class name, using the root(props) with className property with more that one names and additional based class names as string', () => {
 		const myComponent: any = {
 			props: {
 				className: "user-class-name-1 user-class-name-2",
 			},
 		};
 		const componentClassNames: string = "--active --loaded";
+		const className: DynaClassName = dynaClassName("my-component");
+		const output = className.root(myComponent.props, componentClassNames);
+		expect(output).toBe("user-class-name-1 user-class-name-2 my-component my-component--active my-component--loaded")
+	});
+
+	it('should return the className and the base class name, using the root(props) with className property with more that one names and additional based class names as array', () => {
+		const myComponent: any = {
+			props: {
+				className: "user-class-name-1 user-class-name-2",
+			},
+		};
+		const componentClassNames: string[] = ["--active", "--loaded"];
 		const className: DynaClassName = dynaClassName("my-component");
 		const output = className.root(myComponent.props, componentClassNames);
 		expect(output).toBe("user-class-name-1 user-class-name-2 my-component my-component--active my-component--loaded")

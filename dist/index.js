@@ -124,7 +124,15 @@ exports.dynaClassName = function (baseClassName) {
             .join(" ");
     };
     output.root = function (props) {
-        return output(props.className && "/" + props.className, "");
+        var classNames = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            classNames[_i - 1] = arguments[_i];
+        }
+        return output.apply(void 0, [props.className && props.className
+                .split(" ")
+                .map(function (cn) { return "/" + cn; })
+                .join(" "),
+            ""].concat(classNames));
     };
     return output;
 };
