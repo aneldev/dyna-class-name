@@ -1,7 +1,10 @@
 export declare type DynaClassName = {
-    (...classNames: (string | any)[]): string;
-    root(props: IProps, ...classNames: string[]): string;
+    (...classNames: TClassNameArguments): string;
+    root(props: IProps, ...classNames: TClassNameArguments): string;
 };
+export declare type TClassNameArguments = (string | string[] | {
+    [className: string]: boolean;
+})[];
 export interface IProps {
     className?: string;
 }

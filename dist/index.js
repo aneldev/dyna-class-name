@@ -106,6 +106,8 @@ exports.dynaClassName = function (baseClassName) {
             .reduce(function (acc, value) {
             if (typeof value === "string")
                 acc = acc.concat(value.split(" "));
+            else if (Array.isArray(value))
+                acc = acc.concat(value);
             else if (typeof value === "object" && value != null)
                 Object.keys(value).forEach(function (className) {
                     if (value[className])
