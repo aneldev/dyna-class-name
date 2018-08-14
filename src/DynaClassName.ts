@@ -1,6 +1,6 @@
 export type DynaClassName = {
 	(...classNames: (string | any)[]): string;
-	root(props: IProps): string;
+	root(props: IProps,  ...classNames: string[]): string;
 };
 
 export interface IProps {
@@ -30,8 +30,15 @@ export const dynaClassName = (baseClassName: string): DynaClassName => {
 			.join(" ");
 	};
 
-	output.root = (props: IProps): string => {
-		return output(props.className && "/" + props.className, "");
+	output.root = (props: IProps, ...classNames: string[]): string => {
+		return output(
+			props.className && props.className
+				.split(" ")
+				.map((cn: string) => "/" + cn)
+				.join(" "),
+			"", // for the base class
+			...classNames,
+		);
 	};
 
 	return output;

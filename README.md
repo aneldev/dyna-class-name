@@ -132,11 +132,11 @@ It works in JavaScript of course... anyway this example is in TypeScript.
 
 **Notice** in this example, that the class names in the less script, ar declared with the same way as in the Script code. 
 
-## Method root(props)
+## Method root(props, ...classNames)
 
 If your component supports the prop `className`, the `root` method uses this prop out of the box.
 
-The `className.root(this.props)` method is shorthand of `dynaClassName(this.props.className && "/" + this.props.className, "")`.
+The `className.root(this.props)` method is short of `dynaClassName(this.props.className && "/" + this.props.className, "")`.
 
 You can use safely this method even if your component doesn't support this prop.
 
@@ -151,7 +151,7 @@ class MyComponent extends React.Component {
     
     render () {
         return (
-            <div className={this.className.root(this.props)}>
+            <div className={this.className.root(this.props, "--active")}>
                 my awesome component
             </div>
         );
@@ -166,7 +166,7 @@ When you use this component like this:
     <MyComponent className="super-component" />
 ```
 
-The applied class name will be: `super-component my-component` 
+The applied class name will be: `super-component my-component my-component--active` 
   
 
 # What's the difference with the famous classnames

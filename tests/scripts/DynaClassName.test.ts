@@ -75,6 +75,11 @@ describe('dyna class name, ', () => {
 		expect(className(userClassName && "/" + userClassName, "", "--active")).toBe("user-class-name my-component my-component--active");
 	});
 
+	it('should return class name without base name as 2nd argument', () => {
+		const userClassName: string = "user-class-name";
+		expect(className("", "/" + userClassName)).toBe("my-component user-class-name");
+	});
+
 	it('should return class name without base name when the start with "/", conditional version - false', () => {
 		const userClassName: string = undefined;
 		expect(className(userClassName && "/" + userClassName, "", "--active")).toBe("my-component my-component--active");
@@ -98,6 +103,29 @@ describe('dyna class name, ', () => {
 		const className: DynaClassName = dynaClassName("my-component");
 		const output = className.root(myComponent.props);
 		expect(output).toBe("user-class-name my-component")
+	});
+
+	it('should return the className and the base class name, using the root(props) with className property with more that one names', () => {
+		const myComponent: any = {
+			props: {
+				className: "user-class-name-1 user-class-name-2",
+			},
+		};
+		const className: DynaClassName = dynaClassName("my-component");
+		const output = className.root(myComponent.props);
+		expect(output).toBe("user-class-name-1 user-class-name-2 my-component")
+	});
+
+	it('should return the className and the base class name, using the root(props) with className property with more that one names and additional based class names', () => {
+		const myComponent: any = {
+			props: {
+				className: "user-class-name-1 user-class-name-2",
+			},
+		};
+		const componentClassNames: string = "--active --loaded";
+		const className: DynaClassName = dynaClassName("my-component");
+		const output = className.root(myComponent.props, componentClassNames);
+		expect(output).toBe("user-class-name-1 user-class-name-2 my-component my-component--active my-component--loaded")
 	});
 });
 
