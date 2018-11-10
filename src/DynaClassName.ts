@@ -1,11 +1,11 @@
 export type DynaClassName = {
 	(...classNames:TClassNameArguments ): string;
-	root(props: IProps, ...classNames: TClassNameArguments): string;
+	root(props: any, ...classNames: TClassNameArguments): string;
 };
 
 export type TClassNameArguments = (string | string[] | {[className:string]: boolean})[];
 
-export interface IProps {
+export interface IProps{
 	className?: string;
 }
 
